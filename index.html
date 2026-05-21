@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="color-scheme" content="light only" />
+<meta name="supported-color-schemes" content="light" />
+<title>Bowdie's Chophouse — Spirits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light only;
+    --paper: #f1ebdb;
+    --paper-deep: #ebe2c9;
+    --ink: #2a2520;
+    --ink-soft: #5a4f3f;
+    --gold: #c9a14a;
+    --gold-soft: #8a6f33;
+    --rule: #c5b89a;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #f1ebdb !important;
+    color: #2a2520 !important;
+    font-family: 'Playfair Display', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
+    forced-color-adjust: none;
+  }
+  /* Hard-override any user-agent or in-app dark-mode injection */
+  @media (prefers-color-scheme: dark) {
+    html, body {
+      background: #f1ebdb !important;
+      color: #2a2520 !important;
+    }
+  }
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(201,161,74,0.06) 0%, transparent 35%),
+      radial-gradient(circle at 90% 90%, rgba(201,161,74,0.05) 0%, transparent 35%),
+      var(--paper);
+    padding: 28px 22px 60px;
+  }
+  .masthead {
+    text-align: center;
+    padding: 8px 0 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .wordmark {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 50px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1;
+    margin: 4px 0 14px;
+  }
+  .wm-b {
+    display: inline-block;
+    font-weight: 600;
+    transform: scaleY(1.26);
+    transform-origin: bottom center;
+  }
+  .wm-apos {
+    display: inline-block;
+    transform: translateY(-0.2em);
+  }
+  .masthead-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+    gap: 8px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .masthead-info .info-center {
+    font-style: italic;
+    color: var(--ink);
+  }
+  .ornament-top {
+    color: var(--gold-soft);
+    letter-spacing: 0.5em;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .restaurant {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 30px;
+    letter-spacing: 0.02em;
+    margin: 2px 0 4px;
+  }
+  .sub {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 24px;
+    text-align: center;
+    margin: 28px 0 6px;
+    color: var(--ink);
+  }
+  .section-flourish {
+    text-align: center;
+    color: var(--gold);
+    letter-spacing: 0.6em;
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 10px;
+    padding: 14px 0 4px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 18px;
+  }
+  .search-wrap {
+    position: relative;
+    margin: 22px auto 4px;
+    max-width: 460px;
+    padding: 0 4px;
+  }
+  .search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--gold-soft);
+    border-radius: 0;
+    padding: 12px 36px 12px 14px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+    text-align: left;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.2s;
+  }
+  .search-input::placeholder {
+    color: var(--ink-soft);
+    opacity: 0.55;
+    font-style: italic;
+  }
+  .search-input:focus {
+    border-bottom-color: var(--gold);
+  }
+  /* Remove iOS Safari's default search cancel button */
+  .search-input::-webkit-search-cancel-button,
+  .search-input::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  .search-clear {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    font-size: 22px;
+    line-height: 1;
+    padding: 4px 10px;
+    cursor: pointer;
+    display: none;
+    font-family: Georgia, serif;
+  }
+  .search-clear.visible { display: block; }
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .no-results.visible { display: block; }
+  .no-results-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .no-results-sub {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  /* When searching, hide all subheads and section titles, show all panels */
+  body.searching .panel { display: block; }
+  body.searching .panel.empty-section { display: none; }
+  body.searching .section-title,
+  body.searching .section-flourish,
+  body.searching .subhead,
+  body.searching .subhead-rule { display: none; }
+  body.searching .nav { display: none; }
+  body.searching .spirit.hidden { display: none; }
+  .nav button {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--ink-soft);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    letter-spacing: 0.04em;
+  }
+  /* Only show hover on devices that actually have hover (not touch) */
+  @media (hover: hover) {
+    .nav button:hover {
+      color: var(--gold-soft);
+      border-color: var(--gold-soft);
+    }
+  }
+  .nav button.active {
+    color: var(--gold-soft);
+    border-color: var(--gold-soft);
+  }
+  .panel {
+    display: none;
+    animation: fade 0.35s ease;
+  }
+  .panel.active { display: block; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .major-sub {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 22px;
+    text-align: center;
+    color: var(--ink);
+    margin: 56px 0 18px;
+    position: relative;
+  }
+  .major-sub::before,
+  .major-sub::after {
+    content: "·  ·  ·";
+    display: block;
+    color: var(--gold);
+    letter-spacing: 0.5em;
+    font-size: 12px;
+    font-style: normal;
+  }
+  .major-sub::before { margin-bottom: 8px; }
+  .major-sub::after { margin-top: 8px; }
+  .panel .major-sub:first-of-type {
+    margin-top: 28px;
+  }
+  .subhead {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: var(--gold-soft);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 44px 0 4px;
+  }
+  /* First subhead in a panel needs less top margin */
+  .panel .subhead:first-of-type {
+    margin-top: 22px;
+  }
+  .subhead-rule {
+    text-align: center;
+    color: var(--gold);
+    letter-spacing: 0.4em;
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+  .spirit {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    margin: 12px 0;
+    padding: 0 4px;
+  }
+  .spirit-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .spirit-origin {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 400;
+    display: block;
+    margin-top: 2px;
+    letter-spacing: 0.01em;
+  }
+  .price {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    padding-left: 12px;
+    white-space: nowrap;
+  }
+  .leader-row {
+    display: flex;
+    align-items: baseline;
+    flex: 1;
+    min-width: 0;
+  }
+  .leader-text {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  .leader-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--rule);
+    margin: 0 6px;
+    transform: translateY(-3px);
+  }
+  .unavailable {
+    display: none;
+  }
+  .unavailable .spirit-name,
+  .unavailable .spirit-origin,
+  .unavailable .price {
+    color: #a89c80;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 0.5px;
+  }
+  .unavailable .price::after {
+    content: " · out";
+    font-style: italic;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #a89c80;
+  }
+  .footer {
+    text-align: center;
+    margin: 40px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .footer-flourish {
+    color: var(--gold);
+    letter-spacing: 0.5em;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .container {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  @media (max-width: 380px) {
+    .wordmark { font-size: 42px; }
+    .masthead-info { font-size: 10px; }
+    .section-title { font-size: 21px; }
+    .spirit-name { font-size: 15px; }
+    .spirit-origin { font-size: 12px; }
+    .price { font-size: 15px; }
+    body { padding: 22px 16px 50px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="masthead">
+    <div class="wordmark"><span class="wm-b">B</span>OWDIE<span class="wm-apos">&rsquo;</span>S</div>
+    <div class="masthead-info">
+      <span>2237 Wealthy St SE</span>
+      <span class="info-center">The Spirits Menu</span>
+      <span>East Grand Rapids, MI</span>
+    </div>
+  </header>
+
+  <div class="search-wrap">
+    <input
+      type="search"
+      id="search"
+      class="search-input"
+      placeholder="Search spirits…"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
+    <button type="button" class="search-clear" id="search-clear" aria-label="Clear search">×</button>
+  </div>
+
+  <nav class="nav" id="nav">
+    <button class="active" data-target="bourbon">Bourbon</button>
+    <button data-target="rye">Rye</button>
+    <button data-target="tennessee">Tennessee &amp; Single Malt</button>
+    <button data-target="worldwhiskey">World Whiskey</button>
+    <button data-target="scotch">Scotch</button>
+    <button data-target="tequila">Tequila &amp; Mezcal</button>
+    <button data-target="gin">Gin</button>
+    <button data-target="vodka">Vodka</button>
+    <button data-target="rum">Rum</button>
+    <button data-target="cognacliqueurs">Cognac &amp; Liqueurs</button>
+    <button data-target="port">Port &amp; Dessert</button>
+  </nav>
+
+  <!-- ============ BOURBON ============ -->
+  <section class="panel active" id="bourbon">
+    <h2 class="section-title">Bourbon</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Angel's Envy</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Angel's Envy</div><div class="spirit-origin">Louisville Distillery, Kentucky · Port Finish</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Angel's Envy Cask Strength</div><div class="spirit-origin">Louisville Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$65</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Angel's Envy Triple Cask</div><div class="spirit-origin">Louisville Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+
+    <div class="subhead">Bardstown Bourbon Co.</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bardstown Château Laboude</div><div class="spirit-origin">Bardstown · Bordeaux Cask Finish</div></div><div class="leader-dots"></div></div><div class="price">$40</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bardstown Discovery #6</div><div class="spirit-origin">Bardstown Bourbon Company, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bardstown Founders KBS</div><div class="spirit-origin">Bardstown · Stout Cask Finish</div></div><div class="leader-dots"></div></div><div class="price">$32</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bardstown Foursquare</div><div class="spirit-origin">Bardstown · Rum Cask Finish</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bardstown Fusion #7</div><div class="spirit-origin">Bardstown Bourbon Company, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$22</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bardstown Rishi's Single Barrel</div><div class="spirit-origin">Bardstown · Tea Cask Finish</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Never Say Die Small Batch</div><div class="spirit-origin">Bardstown Bourbon Company, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+
+    <div class="subhead">Buffalo Trace Family</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Blanton's Gold</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$75</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Blanton's Original</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Blanton's Straight from the Barrel</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$80</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">E.H. Taylor Full Proof</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$60</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">E.H. Taylor Small Batch</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$28</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Eagle Rare 10 Year</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Elmer T. Lee</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$55</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">George T. Stagg</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$110</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hancock's Reserve Single Barrel</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$19</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">I.W. Harper 15 Year</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Rishi's Old Antique</div><div class="spirit-origin">Buffalo Trace, Bowdie's Private Selection</div></div><div class="leader-dots"></div></div><div class="price">$55</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Stagg Jr. Batch #15</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$60</div></div>
+
+    <div class="subhead">Heaven Hill</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Elijah Craig 18 Year</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$40</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Elijah Craig Private Barrel</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Elijah Craig Single Barrel</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Elijah Craig Small Batch</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Heaven Hill 20 Year</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$120</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Heaven Hill Bottled in Bond</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Henry McKenna 10 Year Bottled in Bond</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Larceny Small Batch</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Old Fitzgerald 7 Year</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$48</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Old Fitzgerald 9 Year</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Parker's Heritage 16th Edition</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$95</div></div>
+
+    <div class="subhead">Kentucky Heritage</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Baker's</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$22</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Basil Hayden's</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Basil Hayden's 10 Year</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Basil Hayden's Malted Rye</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Basil Hayden's Red Wine Cask</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$22</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Basil Hayden's Toast</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Booker's</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bowdie's Private Select — Maker's</div><div class="spirit-origin">Maker's Mark Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Buffalo Trace</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bulleit Bourbon</div><div class="spirit-origin">Bulleit Distilling Co., Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clermont Steep</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$32</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jim Beam Black Label</div><div class="spirit-origin">James B. Beam Distilling, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jim Beam White Label</div><div class="spirit-origin">James B. Beam Distilling, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Knob Creek</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Knob Creek 12 Year</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Knob Creek 15 Year</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Knob Creek 18 Year</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Knob Creek Bourbon/Rye</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Little Book</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Maker's Mark</div><div class="spirit-origin">Maker's Mark Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Maker's Mark Cellar Aged</div><div class="spirit-origin">Maker's Mark Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$36</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Old Grand-Dad 16 Year</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$38</div></div>
+
+    <div class="subhead">Other Houses</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">1792 Small Batch</div><div class="spirit-origin">Barton 1792 Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">1792 Sweet Wheat</div><div class="spirit-origin">Barton 1792 Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">A Midnight's Winter Dram</div><div class="spirit-origin">Collaboration Release, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$40</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Blade &amp; Bow</div><div class="spirit-origin">Stitzel-Weller Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Blood Oath Pact 10</div><div class="spirit-origin">Lux Row Distillers · Cognac Finish</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Blood Oath Pact 8</div><div class="spirit-origin">Lux Row Distillers · Rum Cask Finish</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Blood Oath Pact 9</div><div class="spirit-origin">Lux Row Distillers, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Four Roses Small Batch Select</div><div class="spirit-origin">Four Roses Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Four Roses Yellow Label</div><div class="spirit-origin">Four Roses Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jefferson's Ocean Marian McLain L.E.</div><div class="spirit-origin">Jefferson's Bourbon · Sea-Aged</div></div><div class="leader-dots"></div></div><div class="price">$60</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jefferson's Ocean Voyage 23</div><div class="spirit-origin">Jefferson's Bourbon · Sea-Aged</div></div><div class="leader-dots"></div></div><div class="price">$22</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jefferson's Reserve</div><div class="spirit-origin">Jefferson's Bourbon, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jefferson's Reserve VR Twin Oak</div><div class="spirit-origin">Jefferson's Bourbon, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Kentucky Owl Confiscated</div><div class="spirit-origin">Kentucky Owl, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Michter's 10 Year Bourbon</div><div class="spirit-origin">Michter's Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$39</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Mister Sam Tribute Whiskey</div><div class="spirit-origin">Sazerac Company, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$160</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Russell's Reserve 10 Year</div><div class="spirit-origin">Wild Turkey Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Thomas S. Moore Chardonnay Cask</div><div class="spirit-origin">Barton 1792 Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$27</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Willett Pot Still Reserve</div><div class="spirit-origin">Willett Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Woodford Reserve</div><div class="spirit-origin">Woodford Reserve Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Woodford Reserve Double Oaked</div><div class="spirit-origin">Woodford Reserve Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$22</div></div>
+
+    <div class="subhead">Regional Distilleries</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bowman Brothers Small Batch</div><div class="spirit-origin">A. Smith Bowman Distillery, Virginia</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Fox &amp; Oden</div><div class="spirit-origin">Fox &amp; Oden Distillery, Arkansas</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Fox &amp; Oden Double Oaked</div><div class="spirit-origin">Fox &amp; Oden Distillery, Arkansas</div></div><div class="leader-dots"></div></div><div class="price">$28</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Heaven's Door 10 Year</div><div class="spirit-origin">Heaven's Door Spirits, Tennessee</div></div><div class="leader-dots"></div></div><div class="price">$28</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Ironfish Bourbon in Mezcal Casks</div><div class="spirit-origin">Ironfish Distillery, Michigan</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Isaac Bowman Port Finish</div><div class="spirit-origin">A. Smith Bowman Distillery, Virginia</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">New Holland Beer Barrel Bourbon</div><div class="spirit-origin">New Holland Brewing, Michigan</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Old Elk Cigar Cut</div><div class="spirit-origin">Old Elk Distillery, Colorado</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Remus 15 Year Gatsby Reserve</div><div class="spirit-origin">MGP Distillery, Indiana</div></div><div class="leader-dots"></div></div><div class="price">$65</div></div>
+
+    <div class="subhead">Weller Family</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Weller 107</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$40</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Weller 12 Year</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$65</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Weller Millennium</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$350</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Weller Special Reserve</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+  </section>
+
+  <!-- ============ RYE ============ -->
+  <section class="panel" id="rye">
+    <h2 class="section-title">Rye</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Selections</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Doc Swinson's Alter Ego Rye</div><div class="spirit-origin">Empirical Spirits, Colorado</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">E.H. Taylor Rye</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$55</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Elijah Craig Straight Rye</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Kentucky Owl 10 Year Rye</div><div class="spirit-origin">Kentucky Owl, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$35</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Knob Creek Rye</div><div class="spirit-origin">Jim Beam Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Lock Stock &amp; Barrel Rye 13 Year</div><div class="spirit-origin">Contract Distilled, Canada</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Mammoth 16 Year Single Barrel Rye</div><div class="spirit-origin">Mammoth Distilling, Michigan</div></div><div class="leader-dots"></div></div><div class="price">$35</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Michter's 10 Year Rye</div><div class="spirit-origin">Michter's Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Michter's US*1 Rye</div><div class="spirit-origin">Michter's Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Never Say Die Rye</div><div class="spirit-origin">Bardstown Bourbon Company, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Pappy Van Winkle 13 Year Rye</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$125</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Pikesville Rye</div><div class="spirit-origin">Heaven Hill Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Sazerac Rye</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Thomas H. Handy Sazerac Rye</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$90</div></div>
+
+    <div class="subhead">WhistlePig</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">WhistlePig 10 Year Single Barrel</div><div class="spirit-origin">WhistlePig Farm, Vermont</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">WhistlePig 12 Year Old World</div><div class="spirit-origin">WhistlePig Farm, Vermont</div></div><div class="leader-dots"></div></div><div class="price">$35</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">WhistlePig 15 Year</div><div class="spirit-origin">WhistlePig Farm, Vermont</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">WhistlePig Boss Hog IX 17 Year</div><div class="spirit-origin">WhistlePig Farm, Vermont</div></div><div class="leader-dots"></div></div><div class="price">$95</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">WhistlePig Boss Hog X Commandments</div><div class="spirit-origin">WhistlePig Farm, Vermont</div></div><div class="leader-dots"></div></div><div class="price">$100</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">WhistlePig PiggyBack 6 Year</div><div class="spirit-origin">WhistlePig Farm, Vermont</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+
+    <div class="subhead">Woodford &amp; Woodinville</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Woodford Reserve Rye</div><div class="spirit-origin">Woodford Reserve Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Woodinville Rye</div><div class="spirit-origin">Woodinville Whiskey Co., Washington</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+  </section>
+
+  <!-- ============ TENNESSEE & SINGLE MALT ============ -->
+  <section class="panel" id="tennessee">
+    <h2 class="section-title">Tennessee &amp; Single Malt</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">American Single Malt</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Dunville's Single Malt</div><div class="spirit-origin">Echlinville Distillery, Northern Ireland</div></div><div class="leader-dots"></div></div><div class="price">$17</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Old Emmer</div><div class="spirit-origin">Mammoth Distilling, Michigan</div></div><div class="leader-dots"></div></div><div class="price">$19</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Scapegrace Fortuna</div><div class="spirit-origin">Scapegrace Distillery, New Zealand</div></div><div class="leader-dots"></div></div><div class="price">$17</div></div>
+
+    <div class="subhead">Tennessee</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jack Daniel's 12 Year</div><div class="spirit-origin">Jack Daniel's Distillery, Tennessee</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jack Daniel's Bonded</div><div class="spirit-origin">Jack Daniel's Distillery, Tennessee</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jack Daniel's Old No. 7</div><div class="spirit-origin">Jack Daniel's Distillery, Tennessee</div></div><div class="leader-dots"></div></div><div class="price">$9.50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jack Daniel's Sinatra Select</div><div class="spirit-origin">Jack Daniel's Distillery, Tennessee</div></div><div class="leader-dots"></div></div><div class="price">$35</div></div>
+  </section>
+
+  <!-- ============ COGNAC & LIQUEURS ============ -->
+  <!-- ============ COGNAC & LIQUEURS ============ -->
+  <section class="panel" id="cognacliqueurs">
+    <h2 class="section-title">Cognac &amp; Liqueurs</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Cognac &amp; Brandy</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Christian Bros Brandy</div><div class="spirit-origin">E&amp;J Gallo, California</div></div><div class="leader-dots"></div></div><div class="price">$9</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Courvoisier V.S.</div><div class="spirit-origin">Courvoisier, Jarnac, France</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Elephant Brandy</div><div class="spirit-origin">Elephant Spirits, Germany</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hennessy V.S.</div><div class="spirit-origin">Hennessy, Cognac, France</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Louis XIII <span style="font-size:11px; font-style:italic; letter-spacing:0.05em; color:var(--ink-soft); font-variant:normal;">· 0.5 oz</span></div><div class="spirit-origin">Rémy Martin, Cognac, France</div></div><div class="leader-dots"></div></div><div class="price">$105</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Louis XIII <span style="font-size:11px; font-style:italic; letter-spacing:0.05em; color:var(--ink-soft); font-variant:normal;">· 1 oz</span></div><div class="spirit-origin">Rémy Martin, Cognac, France</div></div><div class="leader-dots"></div></div><div class="price">$215</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Pierre Ferrand Ambre</div><div class="spirit-origin">Maison Ferrand, Cognac, France</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Rémy Martin V.S.O.P.</div><div class="spirit-origin">Rémy Martin, Cognac, France</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Villon</div><div class="spirit-origin">Maison Villon, France</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+
+    <div class="subhead">Herbal</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Amaro Lucano</div><div class="spirit-origin">Amaro Lucano, Pisticci, Italy</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Amaro Nonino</div><div class="spirit-origin">Nonino Distillatori, Friuli, Italy</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Ancho Reyes</div><div class="spirit-origin">Ancho Reyes, Puebla, Mexico</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Aperol</div><div class="spirit-origin">Campari Group, Padova, Italy</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Averna</div><div class="spirit-origin">Fratelli Averna, Sicily, Italy</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Campari</div><div class="spirit-origin">Campari Group, Milan, Italy</div></div><div class="leader-dots"></div></div><div class="price">$9</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Contratto Vermouth</div><div class="spirit-origin">Contratto, Canelli, Italy</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Drambuie</div><div class="spirit-origin">Drambuie, Edinburgh, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$9</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Fernet Branca</div><div class="spirit-origin">Fratelli Branca, Milan, Italy</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Fernet Menta</div><div class="spirit-origin">Fratelli Branca, Milan, Italy</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Green Chartreuse</div><div class="spirit-origin">Chartreuse Diffusion, Voiron, France</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Mata Hari Absinthe</div><div class="spirit-origin">Destillerie Weutz, Austria</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Montenegro</div><div class="spirit-origin">Distilleria Montenegro, Bologna, Italy</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Sambuca</div><div class="spirit-origin">Italian Anise Liqueur</div></div><div class="leader-dots"></div></div><div class="price">$9</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Yellow Chartreuse</div><div class="spirit-origin">Chartreuse Diffusion, Voiron, France</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+
+    <div class="subhead">Sweet Liqueurs</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bailey's Irish Cream</div><div class="spirit-origin">Diageo, Dublin, Ireland</div></div><div class="leader-dots"></div></div><div class="price">$9</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Buffalo Trace Bourbon Cream</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Chambord</div><div class="spirit-origin">Chambord, Loire Valley, France</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Disaronno Amaretto</div><div class="spirit-origin">Illva Saronno, Italy</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Fireball</div><div class="spirit-origin">Sazerac Company</div></div><div class="leader-dots"></div></div><div class="price">$6</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Frangelico</div><div class="spirit-origin">Campari Group, Canale, Italy</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Grand Marnier</div><div class="spirit-origin">Marnier-Lapostolle, Cognac, France</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Kahlúa</div><div class="spirit-origin">Kahlúa, Veracruz, Mexico</div></div><div class="leader-dots"></div></div><div class="price">$9</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Licor 43</div><div class="spirit-origin">Diego Zamora, Cartagena, Spain</div></div><div class="leader-dots"></div></div><div class="price">$9</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Limoncello</div><div class="spirit-origin">Italian Lemon Liqueur</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+  </section>
+
+  <!-- ============ GIN ============ -->
+  <section class="panel" id="gin">
+    <h2 class="section-title">Gin</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Contemporary</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Aviation Gin</div><div class="spirit-origin">House Spirits, Portland, Oregon</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bluecoat</div><div class="spirit-origin">Philadelphia Distilling, Pennsylvania</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Empress 1908</div><div class="spirit-origin">Victoria Distillers, British Columbia</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Gray Whale</div><div class="spirit-origin">Gray Whale Gin, Marin, California</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Inverroche</div><div class="spirit-origin">Inverroche Distillery, South Africa</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Liberator</div><div class="spirit-origin">Old Fourth Distillery, Atlanta</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Mahón</div><div class="spirit-origin">Xoriguer Distillery, Menorca, Spain</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Monkey 47</div><div class="spirit-origin">Black Forest Distillers, Germany</div></div><div class="leader-dots"></div></div><div class="price">$21</div></div>
+
+    <div class="subhead">Hendrick's</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hendrick's</div><div class="spirit-origin">William Grant &amp; Sons, Girvan, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hendrick's Flora Adora</div><div class="spirit-origin">William Grant &amp; Sons, Girvan, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hendrick's Grand Cabaret</div><div class="spirit-origin">William Grant &amp; Sons, Girvan, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hendrick's Neptunia</div><div class="spirit-origin">William Grant &amp; Sons, Girvan, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hendrick's Orbium</div><div class="spirit-origin">William Grant &amp; Sons, Girvan, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+
+    <div class="subhead">London Dry</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">2 James Gin</div><div class="spirit-origin">2 James Spirits, Detroit, Michigan</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Beefeater</div><div class="spirit-origin">Beefeater Distillery, London</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bombay Dry</div><div class="spirit-origin">Bombay Spirits Co., England</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bombay Sapphire</div><div class="spirit-origin">Bombay Spirits Co., England</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Nolet's Dry Gin</div><div class="spirit-origin">Nolet Distillery, Netherlands</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Plymouth</div><div class="spirit-origin">Black Friars Distillery, Plymouth · est. 1793</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Tanqueray</div><div class="spirit-origin">Tanqueray, Cameron Bridge, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Tanqueray No. Ten</div><div class="spirit-origin">Tanqueray, Cameron Bridge, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+
+    <div class="subhead">Michigan Local</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Detroit City Gin</div><div class="spirit-origin">Detroit City Distillery, Detroit</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Eastern Kille Dry Gin</div><div class="spirit-origin">Eastern Kille Distillery, Grand Rapids</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Iron Fish</div><div class="spirit-origin">Iron Fish Distillery, Thompsonville</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Knickerbocker</div><div class="spirit-origin">Long Road Distillers, Grand Rapids</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Long Road</div><div class="spirit-origin">Long Road Distillers, Grand Rapids</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+
+    <div class="subhead">The Botanist &amp; Japanese</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Roku</div><div class="spirit-origin">Suntory, Osaka, Japan</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">The Botanist</div><div class="spirit-origin">Bruichladdich Distillery, Islay, Scotland</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+  </section>
+
+  <!-- ============ WORLD WHISKEY ============ -->
+  <section class="panel" id="worldwhiskey">
+    <h2 class="section-title">World Whiskey</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Canadian</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Canadian Club</div><div class="spirit-origin">Hiram Walker Distillery, Ontario</div></div><div class="leader-dots"></div></div><div class="price">$8</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Canadian Club 43 Year</div><div class="spirit-origin">Hiram Walker Distillery, Ontario</div></div><div class="leader-dots"></div></div><div class="price">$110</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Caribou Crossing</div><div class="spirit-origin">Sazerac Company, Canada</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Crown Royal</div><div class="spirit-origin">Crown Royal Distillery, Manitoba</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+
+    <div class="subhead">Irish</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Garavogue Irish Whiskey</div><div class="spirit-origin">Connacht Distillery, Ireland</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jameson</div><div class="spirit-origin">Midleton Distillery, Cork, Ireland</div></div><div class="leader-dots"></div></div><div class="price">$9.50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Kentucky Owl St. Patrick's</div><div class="spirit-origin">Kentucky Owl / Teeling Distillery</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Redbreast 12 Year</div><div class="spirit-origin">Midleton Distillery, Cork, Ireland</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Redbreast 21 Year</div><div class="spirit-origin">Midleton Distillery, Cork, Ireland</div></div><div class="leader-dots"></div></div><div class="price">$95</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Tullamore D.E.W.</div><div class="spirit-origin">Tullamore Distillery, Ireland</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+
+    <div class="subhead">Japanese</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hakushu 12 Year</div><div class="spirit-origin">Hakushu Distillery, Yamanashi, Japan</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hibiki Japanese Harmony</div><div class="spirit-origin">Suntory Distilleries, Japan</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Toki Suntory</div><div class="spirit-origin">Suntory Distilleries, Japan</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Yamazaki 12 Year</div><div class="spirit-origin">Yamazaki Distillery, Osaka, Japan</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Yamazaki 18 Year</div><div class="spirit-origin">Yamazaki Distillery, Osaka, Japan</div></div><div class="leader-dots"></div></div><div class="price">$130</div></div>
+  </section>
+
+  <!-- ============ PORT & DESSERT ============ -->
+  <section class="panel" id="port">
+    <h2 class="section-title">Port &amp; Dessert</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Dessert Wine</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Pineau des Charentes</div><div class="spirit-origin">Charentes, France · Cognac region</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Sauternes <span style="font-size:11px; font-style:italic; letter-spacing:0.05em; color:var(--ink-soft); font-variant:normal;">· bottle</span></div><div class="spirit-origin">Sauternes, Bordeaux, France</div></div><div class="leader-dots"></div></div><div class="price">$72</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Sauternes <span style="font-size:11px; font-style:italic; letter-spacing:0.05em; color:var(--ink-soft); font-variant:normal;">· glass</span></div><div class="spirit-origin">Sauternes, Bordeaux, France</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Vin Santo</div><div class="spirit-origin">Tuscany, Italy</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+
+    <div class="subhead">Port — by the bottle</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Taylor Fladgate Vintage</div><div class="spirit-origin">Taylor Fladgate, Douro Valley</div></div><div class="leader-dots"></div></div><div class="price">$450</div></div>
+
+    <div class="subhead">Port — by the glass</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Casa LBV</div><div class="spirit-origin">Douro Valley, Portugal · Late Bottled Vintage</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Graham's 10 Year Tawny</div><div class="spirit-origin">W. &amp; J. Graham's, Douro Valley</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Graham's 20 Year Tawny</div><div class="spirit-origin">W. &amp; J. Graham's, Douro Valley</div></div><div class="leader-dots"></div></div><div class="price">$23</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Graham's 2017 Vintage</div><div class="spirit-origin">W. &amp; J. Graham's, Douro Valley</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Taylor Fladgate Tawny</div><div class="spirit-origin">Taylor Fladgate, Douro Valley</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+  </section>
+
+  <!-- ============ RUM ============ -->
+  <section class="panel" id="rum">
+    <h2 class="section-title">Rum</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Dark &amp; Aged</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Doctor Bird</div><div class="spirit-origin">Long Pond Distillery, Jamaica</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jung &amp; Wulff Guyana</div><div class="spirit-origin">Demerara Distillers, Guyana</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Jung &amp; Wulff Trinidad</div><div class="spirit-origin">Trinidad, Caribbean</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Myers's</div><div class="spirit-origin">Myers's Rum Company, Jamaica</div></div><div class="leader-dots"></div></div><div class="price">$9.50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Ron Zacapa</div><div class="spirit-origin">Quetzaltenango, Guatemala</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+
+    <div class="subhead">Spiced &amp; Flavored</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Captain Morgan</div><div class="spirit-origin">Diageo, Caribbean</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Malibu</div><div class="spirit-origin">Pernod Ricard, Barbados</div></div><div class="leader-dots"></div></div><div class="price">$9.50</div></div>
+
+    <div class="subhead">White &amp; Light</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bacardi</div><div class="spirit-origin">Bacardi Limited, Puerto Rico</div></div><div class="leader-dots"></div></div><div class="price">$9.50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Mount Gay</div><div class="spirit-origin">Mount Gay Distilleries, Barbados · est. 1703</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+  </section>
+
+  <!-- ============ SCOTCH ============ -->
+  <section class="panel" id="scotch">
+    <h2 class="section-title">Scotch</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Blended</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Dewar's 15</div><div class="spirit-origin">Dewar's, Aberfeldy</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Dewar's White Label</div><div class="spirit-origin">Dewar's, Aberfeldy</div></div><div class="leader-dots"></div></div><div class="price">$9.50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Johnnie Walker Black</div><div class="spirit-origin">Johnnie Walker, Kilmarnock</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Johnnie Walker Blue</div><div class="spirit-origin">Johnnie Walker, Kilmarnock</div></div><div class="leader-dots"></div></div><div class="price">$40</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Johnnie Walker Red</div><div class="spirit-origin">Johnnie Walker, Kilmarnock</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Monkey Shoulder</div><div class="spirit-origin">William Grant &amp; Sons, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+
+    <div class="subhead">Highland</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Dalmore 12</div><div class="spirit-origin">Dalmore Distillery, Alness</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenglassaugh 12</div><div class="spirit-origin">Glenglassaugh Distillery, Portsoy</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenmorangie 10</div><div class="spirit-origin">Glenmorangie Distillery, Tain</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenmorangie 18</div><div class="spirit-origin">Glenmorangie Distillery, Tain</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Loch Lomond 20 Year</div><div class="spirit-origin">Loch Lomond Distillery, Alexandria</div></div><div class="leader-dots"></div></div><div class="price">$42</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Oban 14</div><div class="spirit-origin">Oban Distillery, Argyll</div></div><div class="leader-dots"></div></div><div class="price">$22</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Oban 18</div><div class="spirit-origin">Oban Distillery, Argyll</div></div><div class="leader-dots"></div></div><div class="price">$27</div></div>
+
+    <div class="subhead">Islay</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bowmore 12</div><div class="spirit-origin">Bowmore Distillery, Islay</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Bruichladdich Classic Laddie</div><div class="spirit-origin">Bruichladdich Distillery, Islay</div></div><div class="leader-dots"></div></div><div class="price">$17</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Lagavulin 8</div><div class="spirit-origin">Lagavulin Distillery, Islay</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Laphroaig 10</div><div class="spirit-origin">Laphroaig Distillery, Islay</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+
+    <div class="subhead">Speyside</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Aberlour 16</div><div class="spirit-origin">Aberlour Distillery, Speyside</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Balvenie 12 American Oak</div><div class="spirit-origin">Balvenie Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Balvenie 14 Caribbean Cask</div><div class="spirit-origin">Balvenie Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$31</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Balvenie 16 Single Barrel</div><div class="spirit-origin">Balvenie Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$46</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Balvenie 21 Portwood</div><div class="spirit-origin">Balvenie Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Cragganmore 12</div><div class="spirit-origin">Cragganmore Distillery, Ballindalloch</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenfiddich 12</div><div class="spirit-origin">Glenfiddich Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenfiddich 14</div><div class="spirit-origin">Glenfiddich Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenfiddich 18</div><div class="spirit-origin">Glenfiddich Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$22</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenfiddich Gran Cru 23</div><div class="spirit-origin">Glenfiddich Distillery, Dufftown</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Glenlivet 12</div><div class="spirit-origin">Glenlivet Distillery, Livet</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Macallan 12 Sherry Oak</div><div class="spirit-origin">Macallan Distillery, Craigellachie</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Macallan 18</div><div class="spirit-origin">Macallan Distillery, Craigellachie</div></div><div class="leader-dots"></div></div><div class="price">$95</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Macallan Estate</div><div class="spirit-origin">Macallan Distillery, Craigellachie</div></div><div class="leader-dots"></div></div><div class="price">$63</div></div>
+  </section>
+
+  <!-- ============ TEQUILA & MEZCAL ============ -->
+  <section class="panel" id="tequila">
+    <h2 class="section-title">Tequila &amp; Mezcal</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Añejo &amp; Extra Añejo</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Avión 44</div><div class="spirit-origin">Avión Spirits, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$35</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clase Azul Añejo</div><div class="spirit-origin">Santa Maria Canchesdé, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$80</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clase Azul Gold</div><div class="spirit-origin">Santa Maria Canchesdé, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$100</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clase Azul Ultra</div><div class="spirit-origin">Santa Maria Canchesdé, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$250</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Corazón Sazerac Barrel</div><div class="spirit-origin">Corazón / Buffalo Trace, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$28</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Corazón Stagg Barrel</div><div class="spirit-origin">Corazón / Buffalo Trace, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$28</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Corazón Weller Barrel</div><div class="spirit-origin">Corazón / Buffalo Trace, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$28</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Don Fulano Añejo</div><div class="spirit-origin">La Tequileña Distillery, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Don Julio 1942</div><div class="spirit-origin">Atotonilco el Alto, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$36</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">El Mayor Extra Añejo</div><div class="spirit-origin">El Mayor, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Komos Añejo Reserva</div><div class="spirit-origin">Komos, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Komos Crystallino</div><div class="spirit-origin">Komos, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Komos Extra Añejo</div><div class="spirit-origin">Komos, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$80</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Milagro Añejo</div><div class="spirit-origin">Milagro Tequila, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Ocho Añejo</div><div class="spirit-origin">Ocho, Single Estate, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Patrón Añejo</div><div class="spirit-origin">Hacienda Patrón, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Rey Sol</div><div class="spirit-origin">Rey Sol, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$60</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Tears of Llorona</div><div class="spirit-origin">Tears of Llorona, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$40</div></div>
+
+    <div class="subhead">Blanco</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Adictivo Cristalino</div><div class="spirit-origin">Adictivo Distillery, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$24</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Avión Silver</div><div class="spirit-origin">Avión Spirits, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Camarena</div><div class="spirit-origin">Camarena, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clase Azul Plata</div><div class="spirit-origin">Santa Maria Canchesdé, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Corazón Blanco</div><div class="spirit-origin">San Matias, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Don Fulano Blanco</div><div class="spirit-origin">La Tequileña Distillery, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Don Julio Blanco</div><div class="spirit-origin">Atotonilco el Alto, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">G4 Blanco</div><div class="spirit-origin">El Pandillo Distillery, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Gran Patrón Platinum</div><div class="spirit-origin">Hacienda Patrón, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$50</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Lalo</div><div class="spirit-origin">Lalo Spirits, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Mijenta Blanco</div><div class="spirit-origin">Los Altos, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Patrón Silver</div><div class="spirit-origin">Hacienda Patrón, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Siete Leguas Blanco</div><div class="spirit-origin">Atotonilco el Alto, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+
+    <div class="subhead">Mezcal</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Casamigos Mezcal</div><div class="spirit-origin">Casamigos, Oaxaca</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clase Azul Durango</div><div class="spirit-origin">Clase Azul, Durango · Sotol</div></div><div class="leader-dots"></div></div><div class="price">$45</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clase Azul Guerrero</div><div class="spirit-origin">Clase Azul, Guerrero · Papalometl</div></div><div class="leader-dots"></div></div><div class="price">$75</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Los Vecinos</div><div class="spirit-origin">Los Vecinos del Campo, Oaxaca</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Patrón XO Café</div><div class="spirit-origin">Hacienda Patrón, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+
+    <div class="subhead">Reposado</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Adictivo Reposado</div><div class="spirit-origin">Adictivo Distillery, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Clase Azul Reposado</div><div class="spirit-origin">Santa Maria Canchesdé, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$36</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Código 1530 Rosa</div><div class="spirit-origin">Código 1530, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Corazón Reposado</div><div class="spirit-origin">San Matias, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Don Fulano Reposado</div><div class="spirit-origin">La Tequileña Distillery, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Don Julio 70th</div><div class="spirit-origin">Atotonilco el Alto, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$27</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Don Julio Reposado</div><div class="spirit-origin">Atotonilco el Alto, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">El Cabo</div><div class="spirit-origin">El Cabo, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$16</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">El Mayor Reposado</div><div class="spirit-origin">El Mayor, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$15</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">G4 High Proof</div><div class="spirit-origin">El Pandillo Distillery, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$18</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Komos Rosa</div><div class="spirit-origin">Komos, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$25</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Milagro Reposado</div><div class="spirit-origin">Milagro Tequila, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Siete Leguas Reposado</div><div class="spirit-origin">Atotonilco el Alto, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$20</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Trombo Cedano</div><div class="spirit-origin">Trombo Cedano, Jalisco</div></div><div class="leader-dots"></div></div><div class="price">$35</div></div>
+  </section>
+
+  <!-- ============ VODKA ============ -->
+  <section class="panel" id="vodka">
+    <h2 class="section-title">Vodka</h2>
+    <div class="section-flourish">· · · · ·</div>
+
+    <div class="subhead">Classic</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Belvedere</div><div class="spirit-origin">Belvedere Distillery, Żyrardów, Poland</div></div><div class="leader-dots"></div></div><div class="price">$13</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Chopin</div><div class="spirit-origin">Podlaska Distillery, Krzesk, Poland</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Grey Goose</div><div class="spirit-origin">Grey Goose Distillery, Cognac, France</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Ketel One</div><div class="spirit-origin">Nolet Distillery, Netherlands</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Reyka</div><div class="spirit-origin">Reyka Distillery, Borgarnes, Iceland</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+    <div class="spirit unavailable"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Stoli Elit</div><div class="spirit-origin">Stolichnaya, Latvia</div></div><div class="leader-dots"></div></div><div class="price">$14</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Tito's</div><div class="spirit-origin">Fifth Generation, Austin, Texas</div></div><div class="leader-dots"></div></div><div class="price">$11</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Wheatley</div><div class="spirit-origin">Buffalo Trace Distillery, Kentucky</div></div><div class="leader-dots"></div></div><div class="price">$10</div></div>
+
+    <div class="subhead">Craft &amp; Local</div>
+    <div class="subhead-rule">· · ·</div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Detroit City Vodka</div><div class="spirit-origin">Detroit City Distillery, Detroit</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">Hangar 1</div><div class="spirit-origin">Hangar 1 Distillery, Alameda, California</div></div><div class="leader-dots"></div></div><div class="price">$12</div></div>
+    <div class="spirit"><div class="leader-row"><div class="leader-text"><div class="spirit-name">HDW 100</div><div class="spirit-origin">Holland, Michigan</div></div><div class="leader-dots"></div></div><div class="price">$30</div></div>
+  </section>
+
+  <div class="no-results" id="no-results">
+    <div class="no-results-text">No spirits match your search.</div>
+    <div class="no-results-sub">Try a different word or ask your server.</div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-flourish">· · ·</div>
+    <div>Prices reflect a single pour. All spirits available as the base of any cocktail on request.</div>
+    <div>Ask your server to confirm current availability.</div>
+  </footer>
+</div>
+
+<script>
+  // Section switcher — uses touchend/click to fire only on actual taps
+  const nav = document.getElementById('nav');
+  const buttons = nav.querySelectorAll('button');
+  const panels = document.querySelectorAll('.panel');
+
+  function activate(btn) {
+    const target = btn.dataset.target;
+    buttons.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(target).classList.add('active');
+    // Blur so iOS doesn't keep focus ring on the button
+    btn.blur();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => activate(btn));
+  });
+
+  // ============ SEARCH ============
+  const searchInput = document.getElementById('search');
+  const searchClear = document.getElementById('search-clear');
+  const noResults = document.getElementById('no-results');
+  const allSpirits = document.querySelectorAll('.spirit');
+  const allPanels = document.querySelectorAll('.panel');
+
+  // Pre-cache lowercase searchable text for each spirit (name + origin)
+  allSpirits.forEach(spirit => {
+    const name = spirit.querySelector('.spirit-name')?.textContent || '';
+    const origin = spirit.querySelector('.spirit-origin')?.textContent || '';
+    spirit.dataset.search = (name + ' ' + origin).toLowerCase();
+  });
+
+  function runSearch(query) {
+    const q = query.trim().toLowerCase();
+
+    if (!q) {
+      // Exit search mode — restore normal view
+      document.body.classList.remove('searching');
+      allSpirits.forEach(s => s.classList.remove('hidden'));
+      allPanels.forEach(p => p.classList.remove('empty-section'));
+      noResults.classList.remove('visible');
+      searchClear.classList.remove('visible');
+      return;
+    }
+
+    document.body.classList.add('searching');
+    searchClear.classList.add('visible');
+
+    let totalMatches = 0;
+    allPanels.forEach(panel => {
+      const spirits = panel.querySelectorAll('.spirit');
+      let panelMatches = 0;
+      spirits.forEach(spirit => {
+        // Skip items marked unavailable — they're hidden anyway
+        if (spirit.classList.contains('unavailable')) {
+          spirit.classList.add('hidden');
+          return;
+        }
+        const match = spirit.dataset.search.includes(q);
+        spirit.classList.toggle('hidden', !match);
+        if (match) panelMatches++;
+      });
+      panel.classList.toggle('empty-section', panelMatches === 0);
+      totalMatches += panelMatches;
+    });
+
+    noResults.classList.toggle('visible', totalMatches === 0);
+  }
+
+  searchInput.addEventListener('input', e => runSearch(e.target.value));
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    runSearch('');
+    searchInput.focus();
+  });
+
+  // Defeat all pinch/double-tap gestures on iOS Safari
+  document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
+  document.addEventListener('gesturechange', e => e.preventDefault(), { passive: false });
+  document.addEventListener('gestureend', e => e.preventDefault(), { passive: false });
+
+  let lastTap = 0;
+  document.addEventListener('touchend', e => {
+    const now = Date.now();
+    if (now - lastTap < 350) e.preventDefault();
+    lastTap = now;
+  }, { passive: false });
+
+  document.addEventListener('touchmove', e => {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+</script>
+</body>
+</html>
