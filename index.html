@@ -124,15 +124,7 @@
     opacity: 0.22;
   }
 
-  /* Entrance: edges draw in */
-  @keyframes edge-grow-h { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  @keyframes edge-grow-v { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-
-  .page-frame .edge.top { animation: edge-grow-h 1.1s ease-out 0.35s both; transform-origin: center; }
-  .page-frame .edge.bottom { animation: edge-grow-h 1.1s ease-out 0.45s both; transform-origin: center; }
-  .page-frame .edge.left { animation: edge-grow-v 1.1s ease-out 0.4s both; transform-origin: center; }
-  .page-frame .edge.right { animation: edge-grow-v 1.1s ease-out 0.5s both; transform-origin: center; }
-  .page-frame .inner { animation: rise 1.2s ease-out 1.0s both; }
+  /* Inner secondary rule removed */
 
   /* Mobile: tighter frame inset, smaller corner breaks */
   @media (max-width: 480px) {
@@ -352,37 +344,8 @@
   }
   .panel {
     display: none;
-    animation: fade 0.35s ease;
   }
   .panel.active { display: block; }
-  /* === Entrance animations === */
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes draw {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
-  @keyframes glimmer {
-    0%, 100% { opacity: 0.85; }
-    50% { opacity: 1; }
-  }
-  @keyframes fade {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .masthead { opacity: 0; animation: rise 0.7s ease-out 0.05s forwards; }
-  .masthead-ornament .line { transform-origin: center; animation: draw 0.9s ease-out 0.55s both; }
-  .masthead-ornament .diamond { animation: glimmer 3.5s ease-in-out 1.2s infinite; }
-  .search-wrap { opacity: 0; animation: rise 0.6s ease-out 0.35s forwards; }
-  .nav { opacity: 0; animation: rise 0.6s ease-out 0.5s forwards; }
-  .panel.active { animation: rise 0.7s ease-out 0.65s both; }
-
-  /* === Original panel fade for filter switching (overrides entrance) === */
-  body.loaded .panel.active {
-    animation: fade 0.35s ease;
-  }
   .major-sub {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
@@ -1090,12 +1053,6 @@
 </div>
 
 <script>
-  // Mark body as loaded after entrance animations complete (~1.3s),
-  // so subsequent panel switches use the snappier fade instead of rise.
-  window.addEventListener('load', () => {
-    setTimeout(() => document.body.classList.add('loaded'), 1300);
-  });
-
   // Section switcher — uses touchend/click to fire only on actual taps
   const nav = document.getElementById('nav');
   const buttons = nav.querySelectorAll('button');
